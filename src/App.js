@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+/*eslint-disable*/
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SignInPage from './SignUpComponents/SignInPage';
+import SignUpPage from './SignUpComponents/SignUpPage';
+import HomePage from './MainComponents/HomePage';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme'; // theme.js에서 정의한 테마를 임포트
+
+// 다른 페이지 컴포넌트들을 import...
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+    <Router>
+      <Routes>
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/" element={<HomePage />} />
+        {/* 다른 라우트들... */}
+      </Routes>
+    </Router>
+    </ThemeProvider>
   );
 }
 
